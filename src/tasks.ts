@@ -1,11 +1,10 @@
-export type Task = {
-  id: number;
-  title: string;
-  done: boolean;
-  dueDate?: string;
-};
+import type { Task } from "./schemas";
 
 export function addTask(tasks: Task[], title: string): Task[] {
+  if (title.trim() === "") {
+    throw new Error("Task title cannot be empty");
+  }
+
   const id = tasks.length + 1;
   return [...tasks, { id, title, done: false }];
 }
