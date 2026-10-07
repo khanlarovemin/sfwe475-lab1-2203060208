@@ -6,6 +6,10 @@ export type Task = {
 };
 
 export function addTask(tasks: Task[], title: string): Task[] {
+  if (title.trim() === "") {
+    throw new Error("Task title cannot be empty");
+  }
+
   const id = tasks.length + 1;
   return [...tasks, { id, title, done: false }];
 }
